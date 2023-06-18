@@ -11,6 +11,7 @@ export default Title;
 
 const styles = StyleSheet.create({
     titleContainer:{
+        
         backgroundColor:'white',
         margin:12,
         padding:4,
