@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import AllExpenses from './Screens/AllExpenses';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import AddExpenseScreen from './Screens/AddExpenseScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -13,19 +14,30 @@ export default function App() {
       <StatusBar style='light' />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
-          headerStyle: { backgroundColor: '#252591' },
+          headerStyle: {
+            backgroundColor: '#252591',
+          },
           headerTintColor: 'white',
-          contentStyle: { backgroundColor: '#17186d' },
-          headerRight: () => {
-            return <Text>+</Text>
-          }
+          contentStyle: {
+            backgroundColor: '#17186d',
+          },
         }} >
+          
           <Stack.Screen
             name='All Expenses'
             options={{ title: 'All Expenses' }}
             component={AllExpenses}
-          >
+            >
+            </Stack.Screen>
+
+          <Stack.Screen
+            name='Add_Expense'
+            component={AddExpenseScreen}
+            options={{
+              presentation:'modal'
+            }}>
           </Stack.Screen>
+
         </Stack.Navigator>
       </NavigationContainer>
     </>
