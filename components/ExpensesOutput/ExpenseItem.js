@@ -4,11 +4,11 @@ import { GlobalStyles } from "../../constants/styles";
 import ManageExpense from "../../Screens/ManageExpense";
 
 
-function ExpenseItem({description, amount,date}) {
+function ExpenseItem({id,description, amount,date}) {
     
     const navigation = useNavigation();
     function expenseHandler(){
-        navigation.navigate("ManageExpense");
+        navigation.navigate("ManageExpense",{expenseId:id});
     }
 
     return <Pressable onPress={expenseHandler} style={({ pressed })=>  pressed && styles.pressed }>
