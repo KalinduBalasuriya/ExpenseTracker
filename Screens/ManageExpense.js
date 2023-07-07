@@ -3,10 +3,15 @@ import { StyleSheet, View } from "react-native";
 import IconButton from "../UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../UI/Button";
+import { useDispatch, useSelector } from "react-redux"
+import { deleteExpense } from "../store/expenses-redux";
 
 function ManageExpense({ route, navigation }) {
     const editedExpenseId = route.params?.expenseId;
     const isEditing = !!editedExpenseId;
+
+    const expenseIds = useSelector()
+    const useDispatch = useDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -15,13 +20,14 @@ function ManageExpense({ route, navigation }) {
     }, [navigation, isEditing])
 
     function deleteExpenseHandler() {
-
+        navigation.goBack();
+        dispatch(deleteExpense({id:editedExpenseId}))
     }
      function cancelHandler(){
-
+      navigation.goBack();
      }
      function confirmHandler(){
-
+        navigation.goBack();
      }
     return (
         <View style={styles.container} >
