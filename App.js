@@ -10,7 +10,7 @@ import RecentExpenses from './Screens/RecentExpenses';
 import AllExpenses from './Screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
 import IconButton from './UI/IconButton';
-import { store } from './store/store';
+
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -53,7 +53,7 @@ export default function App() {
   return (
     <>
       <StatusBar style='auto' />
-      <Provider store={store} >
+      
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
@@ -76,7 +76,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      </Provider>
+      
     </>
   );
 }
