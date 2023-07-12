@@ -4,7 +4,7 @@ import IconButton from "../UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../UI/Button";
 import { deleteExpense } from "../store/expenses";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function ManageExpense({ route, navigation }) {
@@ -20,8 +20,10 @@ function ManageExpense({ route, navigation }) {
     }, [navigation, isEditing])
 
     function deleteExpenseHandler() {
-        dispatch(deleteExpense({id:editedExpenseId}))
+        dispatch(deleteExpense({id:editedExpenseId}));
+
         navigation.goBack();
+        
         
     }
      function cancelHandler(){
