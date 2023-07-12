@@ -1,7 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Provider } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,7 +8,8 @@ import RecentExpenses from './Screens/RecentExpenses';
 import AllExpenses from './Screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
 import IconButton from './UI/IconButton';
-
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -53,7 +52,7 @@ export default function App() {
   return (
     <>
       <StatusBar style='auto' />
-      
+      <Provider store={store} >
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
@@ -76,7 +75,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      
+      </Provider>
     </>
   );
 }

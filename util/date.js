@@ -1,3 +1,3 @@
-export function getFormattedDate(){
-    return 
+export function getformattedDate(date){
+    return `${date.getFullYear()}-${ date.getMonth() }-${date.getDate()}` ;
 }

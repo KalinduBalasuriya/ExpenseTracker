@@ -2,6 +2,7 @@ import { Pressable, View, Text ,StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/styles";
 import ManageExpense from "../../Screens/ManageExpense";
+import { getformattedDate } from "../../util/date";
 
 
 function ExpenseItem({id,description, amount,date}) {
@@ -15,7 +16,7 @@ function ExpenseItem({id,description, amount,date}) {
         <View style={styles.expenseItem} >
             <View>
                 <Text style={[styles.textBase, styles.description]} >{description}</Text>
-                <Text style={styles.textBase}>{date.toLocaleDateString()}</Text>
+                <Text style={styles.textBase}>{getformattedDate(date)}</Text>
             </View>
             <View style={styles.amountContainer} >
                 <Text style={styles.amount} >{amount.toFixed(2)}</Text>
