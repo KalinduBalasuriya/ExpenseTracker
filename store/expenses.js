@@ -63,13 +63,34 @@ const expenseSlice = createSlice({
         expenseData: DUMMY_EXPENSES
     },
     reducers: {
-        deleteExpense:(state, action)=>{
-           state.expenseData=state.expenseData.filter((data)=> data.id !== action.payload.id);
-                
+        deleteExpense: (state, action) => {
+            state.expenseData = state.expenseData.filter((data) => data.id !== action.payload.id);
+
+        },
+        updateExpense: (state, action) => {
+
+
+            const updatableExpenseIndex = state.expenseData.findIndex(
+                (expense) => expense.id === action.payload.id);
+            const updatableItem = state.expenseData[updatableExpenseIndex]
+            const updatedItem = { ...updatableItem, ...action.payload }
+            state.expenseData[updatableExpenseIndex] = updatedItem;
+
+            // const updatableExpense = state .expenseData[updatableExpenseIndex];
+            // const updatedItem = { ...updatableExpense, ...action.payload.data };
+            // state.expenseData[updatableExpenseIndex] = updatedItem;
+            // return state.expenseData;
+        },
+        addExpense: (state, action) => {
+            state.expenseData = [action.payload, ...state.expenseData];
         }
+
+
 
     }
 });
 
 export const deleteExpense = expenseSlice.actions.deleteExpense;
+export const addExpense = expenseSlice.actions.addExpense;
+export const updateExpense = expenseSlice.actions.updateExpense;
 export default expenseSlice.reducer;

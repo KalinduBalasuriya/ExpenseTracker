@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import IconButton from "../UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../UI/Button";
-import { deleteExpense } from "../store/expenses";
+import { deleteExpense, updateExpense, addExpense } from "../store/expenses";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -11,7 +11,7 @@ function ManageExpense({ route, navigation }) {
     const editedExpenseId = route.params?.expenseId;
     const isEditing = !!editedExpenseId;
 
-   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -20,23 +20,29 @@ function ManageExpense({ route, navigation }) {
     }, [navigation, isEditing])
 
     function deleteExpenseHandler() {
-        dispatch(deleteExpense({id:editedExpenseId}));
+        dispatch(deleteExpense({ id: editedExpenseId }));
 
         navigation.goBack();
-        
-        
+
+
     }
-     function cancelHandler(){
-      navigation.goBack();
-     }
-     function confirmHandler(){
+    function cancelHandler() {
         navigation.goBack();
-     }
+    }
+    function confirmHandler() {
+        if (isEditing) {
+
+            dispatch(updateExpense({ id: editedExpenseId.toString(), description: 'Test', amount: 15, date: new Date('2022-02-19').toString() }));
+        } else {
+            dispatch(addExpense({ id: 'c1', description: 'Test!!', amount: 16, date: new Date('2022-03-19').toString() }))
+        }
+        navigation.goBack();
+    }
     return (
         <View style={styles.container} >
             <View style={styles.buttons} >
                 <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
-                <Button style={styles.button} onPress={confirmHandler}>{isEditing ?'Update' : "Add"}</Button>
+                <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : "Add"}</Button>
             </View>
             {isEditing && (
                 <View style={styles.deleteContaner} >
@@ -59,13 +65,13 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: GlobalStyles.colors.primary800,
     },
-    buttons:{
-        flexDirection:'row',
-        justifyContent:'center',
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
-    button:{
-       minWidth:120,
-       marginHorizontal:8,
+    button: {
+        minWidth: 120,
+        marginHorizontal: 8,
     },
     deleteContaner: {
         marginTop: 16,
