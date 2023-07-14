@@ -5,6 +5,7 @@ import { GlobalStyles } from "../constants/styles";
 import Button from "../UI/Button";
 import { deleteExpense, updateExpense, addExpense } from "../store/expenses";
 import { useDispatch, useSelector } from "react-redux";
+import ExpenseForm from "../components/ManageExpenses/ExpenseForm";
 
 
 function ManageExpense({ route, navigation }) {
@@ -40,6 +41,7 @@ function ManageExpense({ route, navigation }) {
     }
     return (
         <View style={styles.container} >
+            <ExpenseForm/>
             <View style={styles.buttons} >
                 <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
                 <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : "Add"}</Button>
