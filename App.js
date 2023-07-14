@@ -29,19 +29,19 @@ function ExpensesOverview() {
       )
     }
   }} >
-    <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses} options={{
-      title: 'Recent Expences',
-      tabBarLabel: 'Recent',
-      //  tabBarIcon: ({color, size})=>{
-      //  <Ionicons name="ios-add-circle" size={24} color={'white'} />
-      //   }
-    }} />
     <BottomTabs.Screen name='AllExpenses' component={AllExpenses} options={{
       title: 'All Expences',
       tabBarLabel: 'All',
       // tabBarIcon: ({color, size})=>{
       //     <Ionicons name='calendar' size={size} color={color} />
       // }
+    }} />
+    <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses} options={{
+      title: 'Recent Expences',
+      tabBarLabel: 'Recent',
+      //  tabBarIcon: ({color, size})=>{
+      //  <Ionicons name="ios-add-circle" size={24} color={'white'} />
+      //   }
     }} />
 
   </BottomTabs.Navigator>

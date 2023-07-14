@@ -11,11 +11,13 @@ function renderExpenseItem (itemData){
         date={itemData.item.date}
         />
     )
-        
 }
 
 function ExpensesList({ expenses }) {
+    
+      
     return <FlatList data={expenses} renderItem={renderExpenseItem} keyExtractor={(item)=>item.id} />;
+    
 }
 
 export default ExpensesList;

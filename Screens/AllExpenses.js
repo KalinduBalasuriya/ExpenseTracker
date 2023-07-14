@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 
 function AllExpenses(){
     const expenseRedux = useSelector((state)=>state.currentExpenses.expenseData);
+    
 return (
     <ExpenseOutput expenses={expenseRedux} expensePeriod="Total" />
 )
