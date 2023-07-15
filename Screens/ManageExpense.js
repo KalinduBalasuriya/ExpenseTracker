@@ -30,22 +30,19 @@ function ManageExpense({ route, navigation }) {
     function cancelHandler() {
         navigation.goBack();
     }
-    function confirmHandler() {
+    function confirmHandler(data) {
         if (isEditing) {
 
-            dispatch(updateExpense({ id: editedExpenseId.toString(), description: 'Test', amount: 15, date: new Date('2022-02-19').toString() }));
+            dispatch(updateExpense({ ...data }));
         } else {
-            dispatch(addExpense({ id: 'c1', description: 'Test!!', amount: 16, date: new Date('2022-03-19').toString() }))
+            dispatch(addExpense({...data}))
         }
         navigation.goBack();
     }
     return (
         <View style={styles.container} >
-            <ExpenseForm/>
-            <View style={styles.buttons} >
-                <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
-                <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : "Add"}</Button>
-            </View>
+            <ExpenseForm onCancel={cancelHandler} submitButtonLabel={isEditing} onSubmit={confirmHandler} />
+            
             {isEditing && (
                 <View style={styles.deleteContaner} >
                     <IconButton
@@ -67,14 +64,7 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: GlobalStyles.colors.primary800,
     },
-    buttons: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    button: {
-        minWidth: 120,
-        marginHorizontal: 8,
-    },
+    
     deleteContaner: {
         marginTop: 16,
         paddingTop: 8,

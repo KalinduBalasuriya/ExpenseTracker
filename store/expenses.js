@@ -83,7 +83,7 @@ const expenseSlice = createSlice({
         },
         addExpense: (state, action) => {
             const id= new Date().toString() + Math.random().toString();
-            state.expenseData = [action.payload, ...state.expenseData];
+            state.expenseData = [{...action.payload,id:id}, ...state.expenseData];
         }
 
 
