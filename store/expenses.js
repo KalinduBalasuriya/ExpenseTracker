@@ -72,10 +72,12 @@ const expenseSlice = createSlice({
 
             const updatableExpenseIndex = state.expenseData.findIndex(
                 (expense) => expense.id === action.payload.id);
+                
             const updatableItem = state.expenseData[updatableExpenseIndex]
             const updatedItem = { ...updatableItem, ...action.payload }
             state.expenseData[updatableExpenseIndex] = updatedItem;
-
+            
+            
             // const updatableExpense = state .expenseData[updatableExpenseIndex];
             // const updatedItem = { ...updatableExpense, ...action.payload.data };
             // state.expenseData[updatableExpenseIndex] = updatedItem;

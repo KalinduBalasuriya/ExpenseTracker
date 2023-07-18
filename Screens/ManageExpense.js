@@ -8,9 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import ExpenseForm from "../components/ManageExpenses/ExpenseForm";
 
 
+
 function ManageExpense({ route, navigation }) {
     const editedExpenseId = route.params?.expenseId;
     const isEditing = !!editedExpenseId;
+    const expensesRedux = useSelector((state) => state.currentExpenses.expenseData);
+    const selectedExpense = expensesRedux.find((expense)=>expense.id=== editedExpenseId);
+
 
     const dispatch = useDispatch();
 
@@ -33,16 +37,16 @@ function ManageExpense({ route, navigation }) {
     function confirmHandler(data) {
         if (isEditing) {
 
-            dispatch(updateExpense({ ...data }));
+            dispatch(updateExpense({ ...data, id: editedExpenseId }));
         } else {
-            dispatch(addExpense({...data}))
+            dispatch(addExpense({ ...data }))
         }
         navigation.goBack();
     }
     return (
         <View style={styles.container} >
-            <ExpenseForm onCancel={cancelHandler} submitButtonLabel={isEditing} onSubmit={confirmHandler} />
-            
+            <ExpenseForm onCancel={cancelHandler} submitButtonLabel={isEditing} onSubmit={confirmHandler} defaultValues={selectedExpense} />
+
             {isEditing && (
                 <View style={styles.deleteContaner} >
                     <IconButton
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: GlobalStyles.colors.primary800,
     },
-    
+
     deleteContaner: {
         marginTop: 16,
         paddingTop: 8,
