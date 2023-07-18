@@ -8,6 +8,9 @@ import { View ,StyleSheet} from "react-native";
 
 
 function ExpenseOutput({expenses, expensePeriod}) {
+    
+    
+    
     return (
         <View style={styles.containr} >
             <ExpensesSummary expenses ={expenses} periodName={expensePeriod}/>
